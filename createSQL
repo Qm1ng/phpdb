@@ -1,0 +1,50 @@
+CREATE TABLE `user` (
+    u_code int not null AUTO_INCREMENT UNIQUE,
+    u_id varchar(10) not null,
+    u_pwd varchar(15) not null,
+    u_name varchar(10) not null,
+    u_auth ENUM('user','admin'),
+    PRIMARY KEY (u_code)
+);
+
+INSERT INTO `user` VALUES ('','123','123','一般會員測試','user');
+INSERT INTO `user` VALUES ('','admin','admin','管理者測試','admin');
+INSERT INTO `user` VALUES ('','su','su','後臺使用者測試','admin');
+/*CREATE Member END*/
+
+
+CREATE TABLE `activity` (
+    act_code int not null AUTO_INCREMENT UNIQUE,
+    act_name varchar(10) not null,
+    act_desc varchar(30) not null,
+    act_price int(5) not null,
+    act_area ENUM('臺北市', '新北市', '桃園市' ,'臺中市', '臺南市', '高雄市', '基隆市', '桃園縣', '新竹市', '新竹縣', '苗栗縣', '彰化市', '彰化縣', '南投縣', '雲林縣', '嘉義市', '嘉義縣', '屏東市', '屏東縣', '台東縣', '花蓮市', '花蓮縣', '宜蘭縣', '澎湖縣' ,'金門縣', '連江縣', '香港', '海外', '其他'),
+    act_stage ENUM('幼稚園', '國小', '國中', '高中', '高職', '大專院校', '研究所,', '社會人士' ),
+    PRIMARY KEY (act_code)
+);
+    
+INSERT INTO `activity` VALUES ('', 'REFUN暑假數感程式營','數學是孩子從小到大花最多時間學習的學科之一，卻也是最多孩子無法理解目的的科目。
+《數感傳奇三部曲》是由「美國玩具奧斯卡獎」得獎團隊「綿羊犬」與致力於數學科普教育的「數感實驗室」賴以威老師合作開發。遊戲中，我們以「數感」取代公式與計算，將抽象、生硬的數學題材，結合孩子感興趣的「奇幻故事」與「角色扮演」，詮釋學習數學不一樣的可能性。', '5000', '臺北市', '幼稚園');
+
+/*CREATE Activity END*/
+
+
+CREATE TABLE comment(
+    com_code int not null AUTO_INCREMENT UNIQUE,
+    act_code int not null,
+    u_code int not null,
+    comment varchar not null,
+    PRIMARY KEY (com_code),
+    FOREIGN KEY (act_code) REFERENCES `activity`(act_code),
+    FOREIGN KEY (u_code) REFERENCES `user`(u_code)
+);
+/* CREATE act_comment END*/
+
+
+CREATE TABLE collection (
+    coll_code int not null AUTO_INCREMENT UNIQUE,
+    PRIMARY KEY(coll_code, u_code) REFERENCES `user`(u_code)
+);
+/*CREATE collection END */
+
+
