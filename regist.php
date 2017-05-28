@@ -27,7 +27,7 @@
             if(isset($query)){
                 echo "用戶：<b>".$userid."</b>註冊成功，請牢記您的密碼<br />";
                 echo "2秒後將跳轉至首頁，或<a href='./login.php'>立即登入</a>";
-                header ("Location:'./index.php'");
+                header ("Location: index.php");
             }else{
                 echo "There is an Error while Saving: ";
                 echo "<br />Please click on Create User from menu, and try again<br /><br />";
