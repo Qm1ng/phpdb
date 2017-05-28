@@ -10,7 +10,6 @@
     <?php include "header.php"; ?>
 
     <?php
-
     if(isset($_POST['submit'])) {
         $userid = $_POST['userid'];
         $userpwd = $_POST['userpwd'];
